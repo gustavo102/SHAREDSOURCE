@@ -30,7 +30,7 @@
                   Buscar2
                   </h2> 
                 </tr>
-                
+                //este es un comentario
                         <td> <p style="color: #000000">Nombre</p></td>
                      <center> <td > <input  type="text" name="nombre" id="nombre"> </td></center>  
                    </tr>
