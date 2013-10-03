@@ -12,7 +12,7 @@
     <link rel="stylesheet" media="screen,projection" type="text/css" href="css/reset.css" />
     <link rel="stylesheet" media="screen,projection" type="text/css" href="css/main.css" />
     <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="css/main-msie.css" /><![endif]-->
-    <link rel="stylesheet" media="screen,projection" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="css/estilot.css" />
     <link rel="stylesheet" media="print" type="text/css" href="css/print.css" />
 
     <title>Primera Consulta</title>
@@ -82,12 +82,12 @@ $query="SELECT fecha,count(*) from prueba group by fecha order by fecha desc;";
 $listado = mysql_query($query) or die(mysql_error());   
 while($registro = mysql_fetch_assoc($listado))
 {
-   echo "</tr><tr><td><p>".$registro['fecha']."</p><td></td><td></td><td>".$registro['count(*)'].
+   echo "<tr><td><p>".$registro['fecha']."</p></td><td></td><td>".$registro['count(*)'].
   "</td>";
 }
 
 ?>
-<td></td>
+
 </tr>
 </table>
             

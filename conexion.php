@@ -1,6 +1,6 @@
 <?php
-$host="192.168.2.51";
+$host="localhost";
 $user="root";
-$pw="9";
+$pw="saya";
 $db="is2";
 ?>
