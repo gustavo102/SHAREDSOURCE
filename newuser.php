@@ -1,3 +1,7 @@
+<html>
+<?php
+include("seguridad.php");
+?>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta http-equiv="content-language" content="en" />
@@ -31,7 +35,7 @@
 
         <!-- Navigation -->
         <div id="nav">
-            <a href="index.php" id="nav-active">Cerrar sesi&oacuten</a> <span>|</span>
+             <a href="logout.php?cerrar"id="nav-active">Cerrar sesi&oacuten</a> <span>|</span>
             
             
         </div> <!-- /nav -->
@@ -49,7 +53,7 @@
         
         <!-- Search -->
         <div id="search" class="box">
-            <form action="historial.php" method="get">
+            <form action="#" method="get">
                 <div class="box">
                     <div id="search-input"><span class="noscreen">Search:</span><input type="text" size="30" name="ide" value="Buscar: " /></div>
                     <div id="search-submit"><input type="image" src="design/search-submit.gif" value="OK" /></div>
@@ -72,32 +76,25 @@
 
          <tr>
             <td><span><label for="filename" font-size: 13px>Nombre Completo:</label></span></td>
-            <td><span><input  name="name"  type="text" width="220px"/></span></td>
+            <td><span><input  name="Name"  type="text" width="220px"/></span></td>
         </tr>
         <tr>
             <td><span><label for="filename" font-size: 13px>Contraseña:</label></span></td>
-            <td><span><input  name="pass"  type="text" width="220px"/></span></td>
+            <td><span><input  name="Pass"  type="password" width="220px"/></span></td>
         </tr>
 
          <tr>
-            <td><span><label for="filename" font-size: 13px>Nombre:</label></span></td>
-            <td><span><input  name="username"  type="text" width="220px"/></span></td>
+            <td><span><label for="filename" font-size: 13px>Nombre de Usuario:</label></span></td>
+            <td><span><input  name="UserName"  type="text" width="220px"/></span></td>
         </tr>
 
          
          <tr>
             <td><span><label for="filename" font-size: 13px>Roles:</label></span></td>
-            <td> 
-             
-            <select name='select1'>
-
-    <option value="">Seleccione una opcion</option>
-    <option value="1">Administrador</option>
-    <option value="2">Usuario</option>
-
-</select>
-
-        </td>
+            <td><select name="rol">
+            <option Value="1">Administrador</option>
+            <option Value="2">Usuario</option>
+            </select> </td>
         </tr>
       
       <tr>
@@ -120,7 +117,7 @@
     <div id="footer">
 
         <!-- Do you want remove this backlinks? Look at www.nuviotemplates.com/payment.php -->
-        <p class="f-right"><a href="index.php">P&aacutegina Web</a> presentada por <a href="index.php">5to Semestre de Ingenier&iacutea en Computaci&oacuten</a></p>
+        <p clss="f-right"><a href="index.php">P&aacutegina Web</a> presentada por <a href="index.php">5to Semestre de Ingenier&iacutea en Computaci&oacuten</a></p>
         <!-- Do you want remove this backlinks? Look at www.nuviotemplates.com/payment.php -->
 
         <p>Copyright &copy;&nbsp;2013 <strong>Universidad Aut&oacutenoma de Tlaxcala</strong>, All Rights Reserved &reg;</p>

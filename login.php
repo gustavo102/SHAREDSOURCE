@@ -1,29 +1,59 @@
 <?php
-$usuario1="admin";
-$usuario2="grupo";
-$contraseña1="123";
-$contraseña2="2121";
+include("seguridad.php");
 $users=$_REQUEST["user"];
 $pas=$_REQUEST["pass"];
-if($users==$usuario1&&$pas==$contraseña1){
-	Include("newcode.php");
+include("conexion.php");
+include("subir.php");
+//datos para establecer la conexion con la base de mysql.
+$conexion= mysql_connect($host,$user,$pw);
+mysql_select_db($db,$conexion);
+function quitar($mensaje)
+{
+	$nopermitidos = array("'",'\\','<','>',"\"");
+	$mensaje = str_replace($nopermitidos, "", $mensaje);
+	return $mensaje;
 }
-if($users==$usuario2&&$pas==$contraseña2){
-Include("main.php");
+if(trim($users) != "" && trim($pas) != "")
+{
+	// Puedes utilizar la funcion para eliminar algun caracter en especifico
+	//$usuario = strtolower(quitar($HTTP_POST_VARS["usuario"]));
+	//$password = $HTTP_POST_VARS["password"];
+	// o puedes convertir los a su entidad HTML aplicable con htmlentities
+	$usuario = strtolower(htmlentities($users, ENT_QUOTES));
+	$password = $pas;
+	$consulta=sprintf("SELECT id,usuario,contrasenia,roles_id from usuarios WHERE usuario='%s' and contrasenia ='%s'",
+		mysql_real_escape_string($usuario),
+		mysql_real_escape_string($password));
+	$result=mysql_query($consulta);
+	if($row = mysql_fetch_array($result)){
+		if($row["contrasenia"] == $password){
+			$_SESSION["k_username"] = $row['id'];
+			$_SESSION["k_name"] = $row['usuario'];
+			$_SESSION["k_nam"] = $row['roles_id'];
+			
+			}else{
+		
+		echo 'Usuario no existente en la base de datos';
+		header("location:index.php");
+
+	}
+	mysql_free_result($result);
+}else{
+	 
+	echo 'Debe especificar un usuario y password';
+	header("location:index.php");
 }
-if($users!=$usuario2&&$pas!=$contraseña2&&$users!=$usuario1&&$pas!=$contraseña1){
-	Include("index.php");
 }
- if($users==$usuario1&&$pas!=$contraseña1 ){
-	Include("index.php");
-}
-if($users==$usuario2&&$pas!=$contraseña2 ){
-	Include("index.php");
-}
- if($users!=$usuario1&&$pas==$contraseña1 ){
-	Include("index.php");
-}
-if($users!=$usuario2&&$pas==$contraseña2 ){
-	Include("index.php");
-}
+			if($_SESSION["k_nam"]==1)
+			{
+
+				header("location:mainpage.php");
+				echo $_SESSION['k_username'];
+			}
+			else if($_SESSION["k_nam"]==2)
+			{
+				header("location:main.php");
+			}
+		
+mysql_close();
 ?>
