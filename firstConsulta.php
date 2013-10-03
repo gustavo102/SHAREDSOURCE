@@ -12,7 +12,7 @@
     <link rel="stylesheet" media="screen,projection" type="text/css" href="css/reset.css" />
     <link rel="stylesheet" media="screen,projection" type="text/css" href="css/main.css" />
     <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="css/main-msie.css" /><![endif]-->
-    <link rel="stylesheet" media="screen,projection" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="css/estilot.css" />
     <link rel="stylesheet" media="print" type="text/css" href="css/print.css" />
 
     <title>Primera Consulta</title>
@@ -68,26 +68,53 @@
             <table border="2">
             <tr>
                 <th>Fecha</th>
-                <th> </th>
+                
                 <th>Cantidad</th>
             </tr>
                   <tr>
                 <?php
 include("conexion.php");
 
+
+
+function fechaesp($date) {
+    $dia = explode("-", $date, 3);
+    $year = $dia[0];
+    $month = (string)(int)$dia[1];
+    $day = (string)(int)$dia[2];
+    
+    $dias = array("domingo","lunes","martes","mi&eacute;rcoles" ,"jueves","viernes","s&aacute;bado");
+    $tomadia = $dias[intval((date("w",mktime(0,0,0,$month,$day,$year))))];
+ 
+    $meses = array("", "enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre");
+    
+    return $tomadia.", ".$day." de ".$meses[$month]." de ".$year;
+}
+
+
+
 $conexion= mysql_connect($host,$user,$pw);
 mysql_select_db($db,$conexion);
+
+
+$arreglo=array();
+$cont=0;
 
 $query="SELECT fecha,count(*) from prueba group by fecha order by fecha desc;";
 $listado = mysql_query($query) or die(mysql_error());   
 while($registro = mysql_fetch_assoc($listado))
 {
-   echo "</tr><tr><td><p>".$registro['fecha']."</p><td></td><td></td><td>".$registro['count(*)'].
-  "</td>";
+
+
+     
+   $arreglo[$cont]=$registro["fecha"];
+   echo "<tr><td><p>".fechaesp($arreglo[$cont])."</p></td><td>".$registro['count(*)']."</td>";
+   $cont++;
+
+
 }
 
 ?>
-<td></td>
 </tr>
 </table>
             
@@ -111,8 +138,8 @@ while($registro = mysql_fetch_assoc($listado))
     </div> <!-- /footer -->
 
 </div> <!-- /main -->
-<script src="js/jquery-1.10.2.js"></script>
-<script src="js/jquery-1.5.min.js"></script>
-<script src="js/logica.js"></script>
+<script src="JS/jquery-1.10.2.js"></script>
+<script src="JS/jquery-1.5.min.js"></script>
+<script src="JS/logica.js"></script>
 </body>
 </html>

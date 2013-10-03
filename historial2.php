@@ -16,7 +16,7 @@
     <link rel="stylesheet" media="print" type="text/css" href="css/print.css" />
 
     <title>Ver C&oacute;digo</title>
-     <script language="Javascript" type="text/javascript" src="../edit_area/edit_area_full.js"></script>
+     <script language="Javascript" type="text/javascript" src="edit_area/edit_area_full.js"></script>
     <script language="Javascript" type="text/javascript">
         // initialisation
         editAreaLoader.init({
@@ -114,15 +114,15 @@
 
         <ul>
             <li id="tray-active"><a href="mainpage.php">Bienvenidos</a></li> <!-- Active page -->
-            <li><a href="newcode.php">Nuevo C&oacutedigo</a></li>
-            <li><a href="firstConsulta.php">C&oacutedigos Guardados</a></li>
+         
+            <li><a href="firstConsulta2.php">C&oacutedigos Guardados</a></li>
         </ul>
         
         <!-- Search -->
         <div id="search" class="box">
-            <form action="historial.php" method="get">
+            <form action="#" method="get">
                 <div class="box">
-                    <div id="search-input"><span class="noscreen">Search:</span><input type="text" size="30" name="ide" value="Buscar: " /></div>
+                    <div id="search-input"><span class="noscreen">Search:</span><input type="text" size="30" name="" value="Buscar: " /></div>
                     <div id="search-submit"><input type="image" src="design/search-submit.gif" value="OK" /></div>
                 </div>
             </form>
