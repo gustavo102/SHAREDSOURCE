@@ -1,3 +1,7 @@
+<html>
+<?php
+include("seguridad.php");
+?>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta http-equiv="content-language" content="en" />
@@ -12,7 +16,7 @@
     <link rel="stylesheet" media="screen,projection" type="text/css" href="css/reset.css" />
     <link rel="stylesheet" media="screen,projection" type="text/css" href="css/main.css" />
     <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="css/main-msie.css" /><![endif]-->
-    <link rel="stylesheet" media="screen,projection" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="css/estilot.css" />
     <link rel="stylesheet" media="print" type="text/css" href="css/print.css" />
 
     <title>Segunda Consulta</title>
@@ -30,7 +34,7 @@
 
         <!-- Navigation -->
         <div id="nav">
-            <a href="index.php" id="nav-active">Cerrar sesi&oacuten</a> <span>|</span>
+             <a href="logout.php?cerrar"id="nav-active">Cerrar sesi&oacuten</a> <span>|</span>
        
         </div> <!-- /nav -->
 
@@ -59,17 +63,19 @@
     </div> <!-- /tray -->
 
     <!-- Promo -->
-    <div id="col-top"></div>
+    
     <div id="col" class="box">
  <form>
-        <div id="col-text">
+    
             
-
+<center>
             <table border="5">
             <tr>
+                <th>Id</th>
                 <th>Hora</th>
-                <th> </th>
+                
                 <th>Nombre</th>
+           
             </tr>
             <tr>
 <?php
@@ -78,18 +84,18 @@ $fecha=$_REQUEST['fecha'];
 $conexion= mysql_connect($host,$user,$pw);
 mysql_select_db($db,$conexion);
 
-$query="SELECT hora, nombre from prueba where fecha='$fecha' order by hora desc;";
+$query="SELECT id,hora, nombre from prueba where fecha='$fecha' order by hora desc;";
 $listado = mysql_query($query) or die(mysql_error());   
 while($registro = mysql_fetch_assoc($listado))
 {
-   echo "</tr><tr><td>".$registro['hora']."<td></td><td></td><td><p>".$registro['nombre']."</p></td>";
+   echo "</tr><tr><td><p>".$registro['id']."</p><td></br>".$registro['hora']."<td></br>".$registro['nombre']."</td>";
 }
 
 ?>
-<td></td>
+
 </tr>
             
-        </table>
+        </table></center>
         </div> <!-- /col-text -->
     
     </div> <!-- /col -->
