@@ -16,7 +16,7 @@
     <link rel="stylesheet" media="print" type="text/css" href="css/print.css" />
 
     <title>Ver C&oacute;digo</title>
-     <script language="Javascript" type="text/javascript" src="edit_area/edit_area_full.js"></script>
+     <script language="Javascript" type="text/javascript" src="../edit_area/edit_area_full.js"></script>
     <script language="Javascript" type="text/javascript">
         // initialisation
         editAreaLoader.init({
@@ -114,13 +114,13 @@
 
         <ul>
             <li id="tray-active"><a href="mainpage.php">Bienvenidos</a></li> <!-- Active page -->
-           
+         
             <li><a href="firstConsulta2.php">C&oacutedigos Guardados</a></li>
         </ul>
         
         <!-- Search -->
         <div id="search" class="box">
-            <form action="historial2.php" method="get">
+            <form action="historial2" method="get">
                 <div class="box">
                     <div id="search-input"><span class="noscreen">Search:</span><input type="text" size="30" name="ide" value="Buscar: " /></div>
                     <div id="search-submit"><input type="image" src="design/search-submit.gif" value="OK" /></div>
@@ -136,39 +136,54 @@
     <div id="col" class="box">
 
 
-<center><form>
+<form>
    
  <div id="col-browsr"></div> 
 
-        <div id="col-text">
-      <?php
+
+    <div id="col-text">
+                      
+         <?php
 
 include_once("conexion.php");
-$fecha=$_REQUEST['nombre'];
 $conexion= mysql_connect($host,$user,$pw);
 mysql_select_db($db,$conexion);
+if (empty($_REQUEST['ide'])){ 
+      echo "Debe especificar una cadena a buscar";  
+}
 
-$query="SELECT codigo FROM prueba WHERE nombre='$_REQUEST[nombre]'";
-$listado = mysql_query($query) or die(mysql_error());   
+
+else{
+$cadena ="SELECT codigo FROM prueba WHERE id='$_REQUEST[ide]'"; 
+$tabla = mysql_query($cadena, $conexion) or die ("problema con cadena de conexion<br><b>" . mysql_error()."</b>");
+$campos = mysql_num_rows($tabla);
+$cadena = mysql_query($cadena, $conexion);
 
 
-while($registro = mysql_fetch_assoc($listado))
-{
-  echo "<textarea id=\"example_1\"  name=\"text\"  style=\"height: 350px; width: 100%;\">"
-   .$registro['codigo'].
+
+while ($campos = mysql_fetch_array($tabla)){
+    
+   echo "<textarea id=\"example_1\"  name=\"text\"  style=\"height: 350px; width: 100%;\">"
+   .$campos['codigo'].
   "</textarea>";
-  
+         
+   }
+
 }
 
 ?>
+
+
+     
+            
         </div> <!-- /col-text -->
     
     </div> <!-- /col -->
     <div id="col-bottom"></div>
-    
+
     <hr class="noscreen" />
     </form>
-    </center>
+    
 <!-- Footer -->
     <div id="footer">
 

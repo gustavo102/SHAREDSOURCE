@@ -16,7 +16,7 @@
     <link rel="stylesheet" media="print" type="text/css" href="css/print.css" />
 
     <title>Ver C&oacute;digo</title>
-     <script language="Javascript" type="text/javascript" src="edit_area/edit_area_full.js"></script>
+     <script language="Javascript" type="text/javascript" src="../edit_area/edit_area_full.js"></script>
     <script language="Javascript" type="text/javascript">
         // initialisation
         editAreaLoader.init({

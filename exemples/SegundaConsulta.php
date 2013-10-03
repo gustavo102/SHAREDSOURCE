@@ -15,8 +15,7 @@
     <link rel="stylesheet" media="screen,projection" type="text/css" href="css/style.css" />
     <link rel="stylesheet" media="print" type="text/css" href="css/print.css" />
 
-    <title>Nuevo C&oacutedigo</title>
-    
+    <title>Segunda Consulta</title>
 </head>
 
 <body>
@@ -32,8 +31,7 @@
         <!-- Navigation -->
         <div id="nav">
             <a href="index.php" id="nav-active">Cerrar sesi&oacuten</a> <span>|</span>
-            
-            
+  
         </div> <!-- /nav -->
 
     </div> <!-- /header -->
@@ -42,9 +40,9 @@
     <div id="tray">
 
         <ul>
-            <li id="tray-active"><a href="mainpage.php">Bienvenidos</a></li> <!-- Active page -->
+            <li id="tray-active"><a href="main.php">Bienvenidos</a></li> <!-- Active page -->
             <li><a href="newcode.php">Nuevo C&oacutedigo</a></li>
-           <li><a href="firstConsulta.php">C&oacutedigos Guardados</a></li>
+            <li><a href="firstConsulta.php">C&oacutedigos Guardados</a></li>
         </ul>
         
         <!-- Search -->
@@ -61,54 +59,38 @@
     </div> <!-- /tray -->
 
     <!-- Promo -->
- 
+    <div id="col-top"></div>
     <div id="col" class="box">
-
-
- <form action="insertarUs.php" method="POST">
-    <center><table>
-        
-              
-
-         <tr>
-            <td><span><label for="filename" font-size: 13px>Nombre Completo:</label></span></td>
-            <td><span><input  name="name"  type="text" width="220px"/></span></td>
-        </tr>
-        <tr>
-            <td><span><label for="filename" font-size: 13px>Contraseña:</label></span></td>
-            <td><span><input  name="pass"  type="text" width="220px"/></span></td>
-        </tr>
-
-         <tr>
-            <td><span><label for="filename" font-size: 13px>Nombre:</label></span></td>
-            <td><span><input  name="username"  type="text" width="220px"/></span></td>
-        </tr>
-
-         
-         <tr>
-            <td><span><label for="filename" font-size: 13px>Roles:</label></span></td>
-            <td> 
-             
-            <select name='select1'>
-
-    <option value="">Seleccione una opcion</option>
-    <option value="1">Administrador</option>
-    <option value="2">Usuario</option>
-
-</select>
-
-        </td>
-        </tr>
-      
-      <tr>
-      <td><input type="submit" value="Guardar Datos"> </td></tr>
+ <form>
+        <div id="col-text">
             
-    </tr>
-    </table></center>
-   
- <div id="col-browsr"></div> 
 
-        
+            <table border="5">
+            <tr>
+                <th>Hora</th>
+                <th> </th>
+                <th>Nombre</th>
+            </tr>
+            <tr>
+<?php
+include("conexion.php");
+$fecha=$_REQUEST['fecha'];
+$conexion= mysql_connect($host,$user,$pw);
+mysql_select_db($db,$conexion);
+
+$query="SELECT hora, nombre from prueba where fecha='$fecha' order by hora desc;";
+$listado = mysql_query($query) or die(mysql_error());   
+while($registro = mysql_fetch_assoc($listado))
+{
+   echo "</tr><tr><td>".$registro['hora']."<td></td><td></td><td><p>".$registro['nombre']."</p></td>";
+}
+
+?>
+<td></td>
+</tr>
+            
+        </table>
+        </div> <!-- /col-text -->
     
     </div> <!-- /col -->
     <div id="col-bottom"></div>
@@ -116,7 +98,8 @@
     <hr class="noscreen" />
     </form>
     
-<!-- Footer -->
+
+   <!-- Footer -->
     <div id="footer">
 
         <!-- Do you want remove this backlinks? Look at www.nuviotemplates.com/payment.php -->
@@ -126,8 +109,9 @@
         <p>Copyright &copy;&nbsp;2013 <strong>Universidad Aut&oacutenoma de Tlaxcala</strong>, All Rights Reserved &reg;</p>
 
     </div> <!-- /footer -->
-
 </div> <!-- /main -->
-
+<script src="JS/jquery-1.10.2.js"></script>
+<script src="JS/jquery-1.5.min.js"></script>
+<script src="JS/logica2.js"></script>
 </body>
 </html>

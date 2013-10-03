@@ -15,8 +15,8 @@
     <link rel="stylesheet" media="screen,projection" type="text/css" href="css/style.css" />
     <link rel="stylesheet" media="print" type="text/css" href="css/print.css" />
 
-    <title>Nuevo C&oacutedigo</title>
-    <script language="Javascript" type="text/javascript" src="edit_area/edit_area_full.js"></script>
+    <title>Ver C&oacute;digo</title>
+     <script language="Javascript" type="text/javascript" src="../edit_area/edit_area_full.js"></script>
     <script language="Javascript" type="text/javascript">
         // initialisation
         editAreaLoader.init({
@@ -104,8 +104,7 @@
         <!-- Navigation -->
         <div id="nav">
             <a href="index.php" id="nav-active">Cerrar sesi&oacuten</a> <span>|</span>
-            
-            
+           
         </div> <!-- /nav -->
 
     </div> <!-- /header -->
@@ -115,13 +114,13 @@
 
         <ul>
             <li id="tray-active"><a href="mainpage.php">Bienvenidos</a></li> <!-- Active page -->
-            <li><a href="newcode.php">Nuevo C&oacutedigo</a></li>
-           <li><a href="firstConsulta.php">C&oacutedigos Guardados</a></li>
+           
+            <li><a href="firstConsulta2.php">C&oacutedigos Guardados</a></li>
         </ul>
         
         <!-- Search -->
         <div id="search" class="box">
-            <form action="historial.php" method="get">
+            <form action="historial2.php" method="get">
                 <div class="box">
                     <div id="search-input"><span class="noscreen">Search:</span><input type="text" size="30" name="ide" value="Buscar: " /></div>
                     <div id="search-submit"><input type="image" src="design/search-submit.gif" value="OK" /></div>
@@ -137,51 +136,31 @@
     <div id="col" class="box">
 
 
- <form action="insertar.php" method="get">
-    <table>
-        <tr><td><span><label for="filename" font-size: 13px>ID del &uacuteltimo registro :</label></span></td>
-             <?php
+<center><form>
+   
+ <div id="col-browsr"></div> 
+
+        <div id="col-text">
+      <?php
+
 include_once("conexion.php");
+$fecha=$_REQUEST['nombre'];
 $conexion= mysql_connect($host,$user,$pw);
 mysql_select_db($db,$conexion);
 
-$query="SELECT max(prueba.id) as id FROM prueba";
+$query="SELECT codigo FROM prueba WHERE nombre='$_REQUEST[nombre]'";
 $listado = mysql_query($query) or die(mysql_error());   
 
 
 while($registro = mysql_fetch_assoc($listado))
 {
-   echo "<td><label  name=\"validacion\"  cols=\"5\" rows=\"1\">"
-   .$registro['id'].
-  "</label></td></tr>";
-
+  echo "<textarea id=\"example_1\"  name=\"text\"  style=\"height: 350px; width: 100%;\">"
+   .$registro['codigo'].
+  "</textarea>";
+  
 }
 
-?>     
-     <tr>
-            <td><span><label for="filename" font-size: 13px>Nombre:</label></span></td>
-            <td><span><input  name="inputName" type="text" width="220px"/></span></td>
-        </tr>
-      
-      <tr><tr>
-      <td></td></tr>
-             <td><input type="submit" value="Guardar Datos"> </td>
-    </tr>
-    </table>
-   
- <div id="col-browsr"></div> 
-
-        <div id="col-text">
-
-            <h3><span></span>Escribe aqu&iacute tu c&oacutedigo.</h3>
-            
-
-
-            <textarea id="example_1" name="text" style="height: 350px; width: 100%;" name="test_1">
-
-        </textarea>
-            
-           
+?>
         </div> <!-- /col-text -->
     
     </div> <!-- /col -->
@@ -189,7 +168,7 @@ while($registro = mysql_fetch_assoc($listado))
     
     <hr class="noscreen" />
     </form>
-    
+    </center>
 <!-- Footer -->
     <div id="footer">
 
